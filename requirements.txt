@@ -1,0 +1,12 @@
+langgraph>=0.2
+langchain-openai>=0.2
+langchain-core>=0.3
+pydantic>=2
+pandas>=2
+python-dotenv>=1
+tavily-python>=0.5
+streamlit>=1.37
+matplotlib>=3.9
+numpy>=1.26
+fpdf2>=2.7
+pytest>=8
