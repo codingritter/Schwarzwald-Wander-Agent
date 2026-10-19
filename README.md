@@ -16,18 +16,18 @@ Ein LangGraph-Agent, der aus einem Tourenwunsch, mehreren zu vergleichenden Schw
 
 <img src="screenshots/diagramme-und-export.png" width="700" alt="Diagramme und Export">
 
-## Architektur & Herkunft
+## Architektur
 
-Die Grundarchitektur - ein LangGraph-Reflection-Agent (erzeugen → recherchieren → vergleichen → Feedback-Revisionsschleife → finaler Output) - stammt aus einer Übung im Udemy-Kurs [AI Engineer Bootcamp 2026: LLMs, RAG, AI Agents & Vector DBs](https://www.udemy.com/course/llm-engineering/), dort als Finanzvergleichs-Agent umgesetzt. Übernommen wurde nur dieses Architekturmuster - Domäne, State-Modell, alle Prompts und die strukturierte Extraktion sind komplett neu für die Tourenplanung geschrieben.
+Der Agent ist als LangGraph-Graph mit Reflection-Schleife aufgebaut: erzeugen → recherchieren → vergleichen → Feedback-Revisionsschleife → strukturierte Etappen-Extraktion → finaler Output. Domäne, State-Modell, alle Prompts und die strukturierte Extraktion sind speziell für die Tourenplanung geschrieben.
 
-Gegenüber dem Kursmuster ergänzt:
+## Funktionen
 
 - Wahl zwischen Gemini API und lokalem Ollama-Modell zur Laufzeit
-- Parallele Regionen-Recherche per `ThreadPoolExecutor` statt sequenziell
-- Neuer Node `extract_itinerary`: strukturierte Etappen-Daten (Strecke, Höhenmeter, Zeit) statt reinem Fließtext
-- Diagramme, Markdown-/PDF-Export
-- Retry-Logik für LLM-/Tavily-Aufrufe
-- Modularisierung in einzelne Dateien statt einer Kursdatei
+- Parallele Regionen-Recherche per `ThreadPoolExecutor`
+- Strukturierte Etappen-Daten (Strecke, Höhenmeter, Zeit) über den Node `extract_itinerary`
+- Diagramme sowie Markdown- und PDF-Export
+- Retry-Logik für LLM- und Tavily-Aufrufe
+- Modularer Aufbau in einzelnen Dateien
 
 ## Setup
 
