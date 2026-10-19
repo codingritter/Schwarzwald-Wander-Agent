@@ -18,7 +18,7 @@ Ein LangGraph-Agent, der aus einem Tourenwunsch, mehreren zu vergleichenden Schw
 
 ## Architektur
 
-Der Agent ist als LangGraph-Graph mit Reflection-Schleife aufgebaut: erzeugen → recherchieren → vergleichen → Feedback-Revisionsschleife → strukturierte Etappen-Extraktion → finaler Output. Domäne, State-Modell, alle Prompts und die strukturierte Extraktion sind speziell für die Tourenplanung geschrieben.
+Der Agent ist als LangGraph-Graph mit Reflection-Schleife aufgebaut: Rahmenbedingungen erfassen → analysieren → Regionen recherchieren → Routen vergleichen → Feedback-Revisionsschleife → strukturierte Etappen-Extraktion → Tourenbericht. Domäne, State-Modell, alle Prompts und die strukturierte Extraktion sind speziell für die Tourenplanung geschrieben.
 
 ## Funktionen
 
@@ -26,14 +26,14 @@ Der Agent ist als LangGraph-Graph mit Reflection-Schleife aufgebaut: erzeugen �
 - Parallele Regionen-Recherche per `ThreadPoolExecutor`
 - Strukturierte Etappen-Daten (Strecke, Höhenmeter, Zeit) über den Node `extract_itinerary`
 - Diagramme sowie Markdown- und PDF-Export
-- Retry-Logik für LLM- und Tavily-Aufrufe
+- Retry-Logik mit Backoff für die LLM-Aufrufe der Kern-Schritte (Tavily-Suchen laufen ohne Retry, fehlgeschlagene Regionen-Recherchen werden übersprungen)
 - Modularer Aufbau in einzelnen Dateien
 
 ## Setup
 
 ```bash
-git clone <repo-url>
-cd schwarzwald-wander-agent
+git clone https://github.com/codingritter/Schwarzwald-Wander-Agent.git
+cd Schwarzwald-Wander-Agent
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -50,9 +50,3 @@ streamlit run app.py
 ```
 
 Tourenwunsch, Regionen und Tages-Kapazität sind mit einem Beispiel vorausgefüllt und direkt im Formular editierbar.
-
-### Tests
-
-```bash
-pytest
-```
